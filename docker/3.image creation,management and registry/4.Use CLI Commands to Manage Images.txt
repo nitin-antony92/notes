@@ -1,0 +1,10 @@
+docker image ###very imp commands takes one argument Ex docker image history centos:6
+docker images save mycentos:v1 >mycentos.custom.tar ###to tar the image
+docker import mycentos.custom.tar localimport:centos6 ###import from tar file
+docker load --input mycentos.custom.tar
+docker image prune ####will remove all dangling images
+docekr image prune -a ###will delete all the images which dont have a container
+docker image inspect centos:6 ###inspect images
+docker image inspect centos:6 > output.txt ###inspect images
+docker image inspect centos:6 --format '{{.ContainerConfig.Hostname}}'
+docker image inspect centos:6 --format '{{json .ContainerConfig}}'

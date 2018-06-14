@@ -1,0 +1,4 @@
+docker image history mybuild:v4
+docker image history mybuild:v4 --no-trunc
+docker export myelequest > myfile.tar #####exporting a container (only container
+docker import myfile.tar myhttpd:v2 ###making an image from that container

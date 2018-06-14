@@ -1,0 +1,32 @@
+****anything in kubernetes goes through api server****
+
+-the default encrytion communication in k8S in TLS(transport layer security)
+-some components and installation methods may enable local ports over HTTP and should be double checked the settings of these components to identify potentially unsecured traffic
+-Anything that connects to the API ,including nodes,proxies,the scheduler,volume plugins in addition to user should be authenticated
+-most installation methods create certificates for those infrastructure pieces, but if theres a manual installation the certificate should be manged by us
+-once authenticated ,every api call should pass an authorization check
+
+
+*****Role based Access Control******
+-kubernetes has integrated Role-based Access Control(RBAC) component
+-that matches user and group to permision sets which are organised onto roles
+-certain roles aloows specific action in the cluster on resources like pods,services or nodes
+-they can even specify namespaces to limit cluster interaction
+- K8s has pre-created roles
+-have to carefully design a role. i.e if a user dont have permission to create a pod but have permission to deployment  the the user indirectly have the permission to run the pod
+****SECURING THE KUBELET************
+-secure kubelet on each node
+-kubelets exposes https endpoints which give access to both data and actions on the individaully nodes,by default these are open
+****-to secure those endpoints ,you can enable kubelet authentication and 
+VERY IMP*********authorization by starting it with an --anonymous-auth=false flag and assigning it an appropriate x509 certificate in its configuration(this will lock down https endpoints)
+****Securing the Network***********
+-network policy restrict access to the network for a particular namespace.
+-this allows developer to restrict whcih pods in other namespaces can access to the current namespace pods
+-pod networking CNI must respect these policies 
+*****Vulnerabilities****************
+*****-k8s makes etensive use of etcd for storing configuration and secrets. It acts as the key/values store for the entire cluster
+-gaining write access to etcd is very dangerous
+-isolate etcd behind a firewall that allows request from the API servers
+-enable audit logging and ad archove audit file on a secure server
+rotate your infra credentials frequetly
+-dont allow 3rd party app in kube-system name space

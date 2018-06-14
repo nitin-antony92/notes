@@ -1,0 +1,27 @@
+Doker swarm is a clustering and scheduling tool for clusters for docker container
+swarms allow portability ,abstraction,flexibitly and consistency of complex application service
+Structure 
+Managers
+-use a consensus algorithm to maintain quorum(requies a min of 2 managers)
+workers
+-register with managers and recieve workloads from them
+services
+-an application that exists in 1 to N replicas,and hosted accross 1 to n workerd
+***********installation CENTOS ****************
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo ####ce for community edition
+yum update
+yum install docker-ce
+cat /etc/group | grep docker #####check if docker group exist...if not create
+systemctl enable docker && systemctl start docker && systemctl status docker
+#### cd /var/run
+ls -al docker.sock( add user to group docker)
+usermod -aG docker user
+*****End **
+***********installation ubuntu ****************
+apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get install docker-ce
+#######end#####

@@ -1,0 +1,19 @@
+docker registry is a secure place to pull images
+###
+mkdir cert ###willl consist of cert we creat
+mkdir auth ###will consist of authosization for user
+openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/dockerrepo.key -x509 -days 365 -out certs/dockerrepo.crt -subj /CN=myregistrydomain.com
+
+####then go to /etc/hosts
+add ur ip and myregistrydomain.com
+172.31.30.4  myregistrydomain.com
+###########3
+for registry 5000 is the default port
+### mkdir /etc/docker/certs.d/myregistrydomain.com:5000
+inside the above directory
+cp /home/user/certs/dockerrepo.crt ca.crt
+
+docker pull registry:2
+docker run --entrypoint htpasswd registry:2 -Bbn test password > auth/htpasswd
+docker run --entrypoint htpasswd registry:2 -Bbn user password > auth/htpasswd
+ 

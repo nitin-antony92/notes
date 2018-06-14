@@ -1,0 +1,30 @@
+docker search <image name> ####searchs images in hub
+docker images ####list images
+docker pull <image name>
+docker run <image name>:version(optional)
+docker run <image id>
+docker inspect <image name>
+docker ps ----currently running containers
+docker ps -a ----previos  ran containers
+docker inspect <image name > ----inspects image
+**** docker run -it <image name> ###interactive terminal
+**** docker run -d <image name> ###running in background w/o me connecting to it (detached mode)
+####docker run -d --name=Mywb1 ubuntu:latest   ####choose the name of your docker container
+ docker exec -it tender_bohr /bin/bash #####attach to the current container without disturbing the previous process
+ docker attach <container name> ###attach to the container and will stop the container if exited ***ends the lifecycle on exit
+ docker stop <container name>
+docker restart <container name>
+docker rmi <repsitory> or <images id>
+docker rm <container name/id> 
+docker ps -a -q 
+docker rm `docker ps -a -q` #####remove all stoped container
+docker port awesome_brattain $con ####variable will tell about port4
+docker run -d -P tomcat ######-P any port exposed to the container make available to the host operating system on a random port btw 32768-65000
+docker run -d -p 8080:80 --name=webserver1 tomcat #####local port 8080 is bount to the container port 80
+
+
+***********IMP****
+docker run -d -p 8080:80 --name=webserver -v /home/user/www:/usr/share/ngnix ngnix:latest
+docker run -d -p 8080:80 --name=webserver -v C:\Users\nitin\chek:/usr/local/apache2/htdocs httpd
+
+docker build -t nitin/myapache .

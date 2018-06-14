@@ -1,0 +1,2 @@
+docker tag <source-image> <destination>
+docker tag centos:6 mycentos:v1

@@ -1,0 +1,11 @@
+docker service create --name bkupweb --publish 80:80 --replicas 2 httpd
+###create 2 replicas
+docker service ls #####to check the service running
+docker service ps bkupweb
+####for backup
+/var/lib/docker
+backup everything in swarm 
+ tar dat swarm somewhere 
+ tar cvf swarm.tar /var/lib/docker/swarm
+#####paste the swarm in required node
+docker swarm init --force-new-cluster

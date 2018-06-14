@@ -1,0 +1,2 @@
+docker search apache --filter stars=50 --filter is-automated=true
+docker search apache --filter stars=50 --filter is-official=true

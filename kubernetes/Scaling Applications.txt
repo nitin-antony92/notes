@@ -1,0 +1,2 @@
+you can change in deployment yaml and apply it
+kubectl scale deployment my-deployment --replicas=3 ####scale up or downn

@@ -1,0 +1,4 @@
+Kubeadm
+ kubeadm is a tool for multinode deployment locally
+ we'll need to select our own CNI 
+ example flannel

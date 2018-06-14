@@ -1,0 +1,49 @@
+The process
+-create the reliable nodes that will form our cluster.(speacially master)
+*****very IMP***-redundant and reliable storage service with a multinode deployment of etcd
+start replicating and load balanced kubernetes api servers
+-setup a master-elected kubernetes scheduler ad controller manager daemons
+*******everything that needs the api server or any other service on the master goes through the load balancer includint the worker nodes
+
+
+Step 1
+
+ -make the mster node reliable
+ -ensure services automatically restart if they fail
+ -kubelet already does this
+ -if kubelet goes down dn v need monit on debian systems or systemctl on systemd to keep the kubelet going
+
+Step 2 STORAGE LAYER
+ 
+ -persistent storage
+ -Clustered etcd already replicates the storage to all master instance in your cluster
+ -to loose data all three master nodes would need to have disks fail at the same time
+
+ -add additional reliability by increasing the size of the cluster from three to five nodes
+
+
+ Step three -REPlicated API services
+
+ -Create the initial log file so that docker will mount a file instead of a directory
+  touch /var/log/kube-apiserver.log
+  -refer image  8.1
+  -kubelet monitors the directory /etc/kubernetes/manifests/
+  -and will automatically create an instance of the kube-apiserver container using the pod definition specified in the file
+
+  Step 4
+   -Now when the state changes
+   -controller mangers and scheduler
+ -3 these processes must not modify the cluster's state simultaneouly(use a  lease-lock)
+  - Each scheduler and controller manager can be launched with a --leader-elect flag
+  ***************imp**************
+   -the scheduler and controller-manager can be configured to talk to the api server that is on the same node (i.e 127.0.0.1)
+    -it can also be configured using the  load balanced ip address of the api servers
+ 
+   -The scheduler and controller-manager will complete the leader election process mentioned before using the --leader-elect flag
+   -in case of a failure accessing the api server,the elected leader will not be able to renew the lease,causing a new leader to be elected
+
+
+   INSTALLING CONFIGURATION FILES
+
+ 
+

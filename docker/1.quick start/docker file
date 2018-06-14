@@ -1,0 +1,30 @@
+1****FROM
+where is it coming from 
+cab be a tar file or a public repository
+or docker hub
+***docker always look first local repo before checking on hub\
+
+
+2****MAINTAINER nitinantony1992 <nitin.antony1992@gmail.com>
+
+3*****RUN
+with root privileges it will run the command exactly the way it is wrintten
+
+4*****ENV
+ENV myvalue nitin
+
+5*****EXPOSE
+EXPOSE 80
+EXPOSE 22
+
+6*****CMD
+difference between RUN And CMD is 
+ run is during the image creation
+ cmd is running on the container (after the base image is created)
+ CMD ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
+
+****CMD u dont need to run with /bin/bash as it will be runnning in daemon
+
+
+
+

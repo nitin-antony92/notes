@@ -1,0 +1,7 @@
+git branch ####gives the branches
+git branch <branchname> ####create branches
+git checkout branchname #####change to the given branch
+git commit --amend  #####amends  the previous commit message
+git push origin <branchname> #######Origin is the remote ....commmits the data to the branch or create the branch in the main server and push the code
+git checkout -b <branchname> ######create the given branch and switch to it
+git reset HEAD~ #####Revet last commit

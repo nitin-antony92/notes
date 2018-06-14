@@ -1,0 +1,24 @@
+inject environment variables while depolying the pod
+kubectl create configmap my-map --from-literal=school=LinuxAcademy
+kubectl get configmap my-map -o yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+ name: config-test-pod
+spec:
+ containers:
+  - name: test-container
+    image: busybox
+    command: ["/bin/sh", "-c", "env" ]
+    env:
+     - name: WHAT_SCHOOL
+       valueFrom:
+         configMapKeyRef:
+           name: my-map
+           key: school
+     - name: name
+       valueFrom:
+         configMapKeyRef:
+           name: my-map
+           key: name

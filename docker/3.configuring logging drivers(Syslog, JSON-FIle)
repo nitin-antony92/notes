@@ -1,0 +1,26 @@
+##by default docker a json driver for logging
+docker info | grep Logging
+docker pull httpd
+docker run -d --name=testweb httpd
+docker logs testweb ###To check log
+docker stop testweb ###stop container
+docker rm testweb ####remove container
+#############make syslog the logging driver
+vim /etc/rsyslog.conf
+uncomment 
+$ModLoad imudp
+$UDPServerRun 514 ####can run in other port
+#####
+###make a new file if dont exist
+/etc/docker/daemon.json
+ {
+  "log-driver": "syslog",
+   "log-opts": {
+            "syslog-address": "udp://privateip:514"
+   }
+ }
+ ####restart rsyslog and docker
+ ###check messages in /var/log/messages
+ docker container run -d --name=testweb1 --log-driver=json-file httpd ###to change the logdriver
+ ####check ##### docker container run -d --log-driver json-file --label production_status=testing -e os=ubuntu httpd
+

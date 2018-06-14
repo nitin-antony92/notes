@@ -1,0 +1,22 @@
+Pod - simplest kubenetes object .it represent one or more container running on a sigle node
+pods are considered Ephemeral(last for short time),replaceble ----stateless
+kill the pods  ...and wait for new one
+cattle vs pets --kill the cattle ,nuture the pets
+******pods are managed via deployments***********
+*****Deployment specification*****
+-Image to run
+-Number of replicas ---so that kubernetes keep number of reesources up and ready to go
+****services refer to deployment and expose the particular port for the application to run
+
+
+***Kubernative services are 
+**** if you use the pod network ip address method,then a deployment gets assigned a single ip
+-the kubernetes service (using kube-proxy on the node) redirects traffic
+****1.imperative(giving an authoritative command; peremptory...example run ryt now)
+kubectl run nginx --image= nginx
+***2.declarative
+ -we use yaml file
+ -kubeapply is used
+ -must have api version *****
+ idf no namespace then its default
+ 

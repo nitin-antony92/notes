@@ -1,0 +1,3 @@
+#########conditions/Restrictions
+no overlapping ip ranges btw the two vpc	
+transitive peering not allowed a->b->c

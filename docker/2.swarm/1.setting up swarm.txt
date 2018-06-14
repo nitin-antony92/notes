@@ -1,0 +1,11 @@
+docker swarm init --advertise-addr 172.31.108.242
+##### token ###
+docker swarm join --token SWMTKN-1-4usmn0yqtyskskzxbuh25fqymnjgamdil6hczp6h1r06hgfquy-2fhbqzrxckai0lsnnggc1v82h 172.31.108.242:2377
+###########3##############
+docker swarm join-token worker ####to get back the token
+****** to add a additional manager (run on the current node)
+docker swarm join-token manager
+###token will be same till first dash 
+docker node ls 
+###shows all the master and worken nodes
+docker sytem info | grep more

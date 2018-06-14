@@ -1,0 +1,24 @@
+ kubectl get pods ####get all the resources connected
+ kubectl get pods --all-namespaces ####get all the name spaces
+ kubectl get pods --all-namespaces -o wide ####which node the pods are in
+ kubectl get nodes  ###on the master to see this node join the cluster.
+ kubectl create -f <yamlfile location>
+ kubectl describe job <job name>
+ journalctl ->for logs
+ kubectl logs <pod name> for logs of that pod
+ kubectl delete -f /home/jobs/pi-job.yaml ####delete pod with file method
+ kubectl delete pod alpine or kubectl delete pod/alpine ####object method
+ kubectl describe node node-name ####get all info
+kubectl get pods --all-namespaces -o wide will list all pods and which nodes they are currently running on.
+kubectl get pods -n kube-system ####give all pods with kube-system namespace
+**** kubectl get deployment <depolyment-name> -o yaml #####gives output in yaml for mat
+kubectl set image deployment/nginx-deployment nginx=nginx=ngnix:1.8
+********************8generate a new token
+kubeadm token generate4
+kubeadm token generate
+=> kubeadm token generate                              ---> generate a new token
+=> kubeadm token create ti69x1.d7ftldzr7g2ztv74 --print-join-command --ttl=0    ---> to get the join command for new token
+=> kubeadm token create --print-join-command           ---> to get the join command of old token.
+=> kubeadm token list
+=> kubeadm token delete
+*********************************************************

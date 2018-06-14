@@ -1,0 +1,84 @@
+################################# Dockerfile ############################333
+
+# this is our first docker file
+From centos:latest
+Label maintainer="nitin.antony1992@gmail.com"
+Run yum update -y
+
+####################### End ################################
+
+docker build -t custom:v1 . ##### . indicates current directory ### -t stands for tag 
+
+
+docker build -t custom:v1 -f Dockerfile2 .         ##### -f indicates the docker file name
+
+docker build --pull --no-cache --squash -t optimized:v1 .
+### --squash => squeeze into single layer
+### --pull		Always attempt to pull a newer version of the image
+#### --no-cache => wornt use cached layers
+### will get new image id...alothoug name will be same
+3be561592d47   
+
+
+##########################
+iNSTRUCTION -ANY LINE WITH INSTRUCTION will build an inetermideate layer
+example of instruction are FROM,ARG,RUN,CMD
+LABEL,Expose
+
+###############FROM
+can be from a github repository
+usually public docker repsotory
+
+############3
+
+
+
+#####LABEL
+
+LABEL multi.label1="value1" multi.label2="value2" other="value3"
+
+##########################33
+
+
+		####RUN#####
+run through a image build process
+example
+RUN ["yum","install","telnet"] or
+RUN yum update -y && yum install net-tools 
+RUN mkrir -p /run/httpd
+ENTRYPOINT
+#############33
+#####CMD
+only last cmd ccommand will work
+CMD echo "remember to echo your ip"
+####
+### env
+ENV environment="production"
+####
+#############EXPOSE####
+The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime. You can specify whether the port listens on TCP or UDP, and the default is TCP if the protocol is not specified.
+EXPOSE 80 
+###does not map it....rather than just for documentation
+
+
+
+
+############
+############ENTRYPOINT######
+ENTRYPOINT apachectl "-DFOREGROUND"
+entry point cannot be over ridden
+#################
+
+#############Copy#####
+*******copy command only work with files but the ADD command also work with url
+COPY index.html /var/www/html/
+##########
+############Volume#######
+volume will create a mount within the image
+volume will not mount on the underlying host(portability)
+#######ARG#####
+ARG Tagversion=6
+usage as $Tagversion
+
+
+

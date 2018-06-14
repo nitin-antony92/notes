@@ -1,0 +1,12 @@
+docker rm `docker ps -a -q` ###loops through all the container and deletes it
+
+docker run -it --name testcontainer --rm centos:6 /bin/bash ###removes container after completion
+
+docker run -it --name testcontainer --env myvar1=idontcare --env myvar2=thatsok --rm centos:6 /bin/bash ###removes container after completion
+
+
+docker run -d --name sharp_pike httpd ####runs in detach mode
+
+docker attach -it sharp_pike /bin/bash  ####if exited...the container stops
+
+docker exec -it sharp_pike /bin/bash  ####when exited the container dont stop

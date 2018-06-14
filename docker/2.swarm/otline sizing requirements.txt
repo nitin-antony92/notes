@@ -1,0 +1,9 @@
+1.cpu,memonry and disk
+2.concurrency
+#####
+universal control plane(UCP ) System Requirement -CLUSTER MANAGEMENT
+Minimun requirements
+-8gb ram (managers)
+-4gb ram(workers)
+-3gb free disk
+####non-productionn

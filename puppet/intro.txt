@@ -1,0 +1,29 @@
+###example
+puppet_service.pp
+
+service {'puppet':    ####service is type of resource
+ensure => 'stopped',   ####ensure and enable are properties
+enable => 'false', 
+provider => 'upstart'   ###provider is a parameter
+}
+#####to quickly run
+puppet apply -e 'service{puppet: enable=>"true"}'
+puppet apply service.pp --noop ####no operation 
+	#####after execution###
+	Notice: Compiled catalog for ubuntu.localdomain in environment production in 0.29 seconds
+	Notice: /Stage[main]/Main/Service[puppet]/enable: current_value true, should be false (noop)
+	Notice: Class[Main]: Would have triggered 'refresh' from 1 events
+	Notice: Stage[main]: Would have triggered 'refresh' from 1 events
+	Notice: Finished catalog run in 0.10 seconds
+	#####end execution#####################
+
+
+###VARIABLES =>immutable...i.e once assinged cannot be changed
+$download='google.com'	
+$url="https://$download/nitin-antony" ###to use variables u can use double qoutes
+###variable tpyes
+1.string
+2.array $an_array=['nitin','antony','jolly','shaunch']
+3.boolean $a_bolean=true
+4.hash $a_hash={'firstname' => 'nitin', 'age' => 25, 'lastname' => 'antony' 'address' => ['street' ,{'city' => 'ghaziabad'}],
+}

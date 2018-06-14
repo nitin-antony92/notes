@@ -1,0 +1,7 @@
+docker images
+docke pull -a httpd ####pulls all the tag
+docker pull --disable-content-trust <image-name> ####no need to verify images
+docker images --digests ####refer digest :different way of refering dockerimages(other one is id)
+docker images --filter "before=centos:6"
+docker images --no-trunc ###show full image id
+docker images -q ###or ### docker images --quiet

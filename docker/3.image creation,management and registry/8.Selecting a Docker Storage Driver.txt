@@ -1,0 +1,13 @@
+####storage commonly user in rhel system is ****devicemapper****\
+for ubuntu is aufs3
+###for centos default is overlay
+###we will use devicemapper
+#######################
+cd /etc/docker
+create a file daemon.json
+
+####content
+{
+	"storage-driver":"devicemapper"
+}
+###always have a backup of images when changing the storage driver

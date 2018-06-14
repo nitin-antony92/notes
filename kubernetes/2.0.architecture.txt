@@ -1,0 +1,11 @@
+master node (control all rest)
+ -Kube apiserver --answer all api calls 
+ -ETCD-uses key value pair for other persistent storage
+ -kube-schedluer  -responsible for whic nodes are willl be responible for nodes and there requiste container
+ -cloud controller manger-responsible for persistent object,routes,networking
+
+
+Node
+-each run a KUBELET
+-Kubelet takes order from master nodes to bring up pods
+-KUBE PROXY which assist with CNI

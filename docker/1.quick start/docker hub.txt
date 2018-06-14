@@ -1,0 +1,23 @@
+###base images	to instantiate the container on
+###base images are what my containers are based upon
+###all base images are built upon a docker file
+docker run hello-world:latest
+
+docker pull httpd
+Using default tag: latest
+latest: Pulling from library/httpd
+f2b6b4884fc8: Pull complete ###base images 
+b58fe2a5c9f1: Pull complete
+e797fea70c45: Pull complete
+6c7b4723e810: Pull complete
+02074013c987: Pull complete
+4ad329af1f9e: Pull complete
+0cc56b739fe0: Pull complete
+Digest: sha256:fcd4166aac99a1245b6192d096df42de4d6bc0ba0d48311cee3049aece4aa571
+Status: Downloaded newer image for httpd:latest
+
+
+
+################################container lifecycle ########################
+
+

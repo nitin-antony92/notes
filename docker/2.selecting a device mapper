@@ -1,0 +1,10 @@
+docker info | grep Storage
+###if its not devicemapper
+create a file in /etc/docker/daemon.jsom
+ {
+  "storage-driver":"devicemapper"
+ }
+ ###restart docker 
+ ####export your images as it wont be availble after this
+ /var/lib/docker/devicemapper/devicemapper/ 
+ 

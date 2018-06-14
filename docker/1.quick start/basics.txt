@@ -1,0 +1,18 @@
+#####
+var/lib/docker -where all images resides
+###commands
+docker ps ####returns the currently running containers
+docker ps -a ###3returns the previously ran containers
+####
+###to pull the latest version
+docker pull imagename
+####to pull older version
+docker pull ubuntu:xenial 
+#######docker run -i -t centos /bin/bash
+-i ->interactive	
+-t -> attach it to my terminal
+/bin/bash ->will take you to that command
+####restart command
+docker restart <name of the container>
+docker attach <name of the container> ####attach it to current running instance
+docker inspect <name of container> #####insoect the container

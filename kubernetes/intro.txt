@@ -1,0 +1,27 @@
+#####POD
+A smallest unit of deployment
+A pod will have container images
+ ####Replica- indicates how many of the pods will be running
+
+ ##refer intro image
+ app1.yaml will be maintained 
+ it will be fed to the api (kubernetes cluster services)
+ *******************video tutorial****************************
+   ***master****
+   one of the nodes should be master
+   accept api request
+   effectely control other nodes(ec2 persay) which wer used to be called minions
+   sudo kubeadm init --pod-network-cidr=10.244.0.0/16 ####to initialize master (why) master step 1
+   ****there will be token provided which is used to run on other nodes in order join the cluster
+kubeadm join 172.31.30.162:6443 --token jahsev.u0ym0kp9p2l3xmf6 --discovery-token-ca-cert-hash sha256:b1cd3d71bcbf7192aa0fc7585a377dc5ad140e4ef2ecbe3148656672f007e8a0
+####user to communicate##### master step 2
+
+   mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  #####end#####
+
+  ###flannel is used as CNI container network interface
+  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml #####run on master(step 3)
+
+  
