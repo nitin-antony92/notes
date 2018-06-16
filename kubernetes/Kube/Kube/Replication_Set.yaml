@@ -1,0 +1,25 @@
+### This yaml creates Replica Set, a pod and service.
+## kubectl create -f Replica_set.yaml
+
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: nginx
+  labels: 
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+

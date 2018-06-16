@@ -1,0 +1,12 @@
+### This yaml is for a pod that runs the nginx image.
+## kubectl create -f nginx-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+  -  name: nginx
+      image: nginx
+  restartPolicy: Always

@@ -1,0 +1,20 @@
+### This yaml is for setting environmental variables
+## kubectl create -f pod-config.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-dump
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command:
+      - env
+    env:
+    - name: STUDENT_NAME
+      value: "Your Name"
+    - name: SCHOOL
+      value: "Linux Academy"
+    - name: KUBERNETES
+      value: "is awesome"

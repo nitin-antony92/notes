@@ -1,0 +1,20 @@
+### Deploy a Pod
+## This pod will cause the alpine linux container to sleep for 3600 seconds (1 hour) and then exit. 
+## Kubernetes will then restart the pod.
+## kubectl create -f alpine.yaml
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine
+  namespace: default
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+  restartPolicy: Always

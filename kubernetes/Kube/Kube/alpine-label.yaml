@@ -1,0 +1,18 @@
+## Create a new alpine deployment that sleeps for one minute and is then restarted from a yaml file that you write that labels these container with the key/value pair running=afterLabels.
+## kubectl create -f alpine-label.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine
+  namespace: default
+  labels:
+    running: afterLabels
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command:
+      - sleep
+      - "60"
+  restartPolicy: Always

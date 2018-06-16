@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  annotations:
+    kubernetes.io/change-cause: kubectl --namespace elk -s https://apiserver.elk.ampaws.com.au:6443
+      --kubeconfig=/var/lib/kubelet/kubeconfig-PROD scale --replicas=12 rc dequeue1a-v2
+      dequeue1t2-v2 dequeue2b-v2 enqueue1a-v3 enqueue2b-v3
+  creationTimestamp: 2018-04-09T21:08:35Z
+  generation: 3
+  labels:
+    component: sqs-dequeue
+    role: dequeue
+    version: dequeue1a-v2
+  name: dequeue1a-v2
+  namespace: elk
+  resourceVersion: "226067048"
+  selfLink: /api/v1/namespaces/elk/replicationcontrollers/dequeue1a-v2
+  uid: 2a761244-3c3a-11e8-991d-06d0e5b0690f
+spec:
+  replicas: 12
+  selector:
+    component: sqs-dequeue
+    role: dequeue
+    version: dequeue1a-v2
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        component: sqs-dequeue
+        role: dequeue
+        version: dequeue1a-v2
+    spec:
+      containers:
+      - env:
+        - name: ENVIRONMENT_BUCKET
+          value: amp-elk-cluster
+        - name: ENVIRONMENT_FOLDER
+          value: environment/sqs-dequeue-version-2
+        - name: LOGSTASH_CONFIG_BASE
+          value: sqs-dequeue-logstash
+        - name: LOGSTASH_CONFIG_SPECIFIC
+          value: main-cluster
+        - name: KILL_LOGSTASH_AFTER
+          value: "7200"
+        image: registry.paas.ampaws.com.au/elk/logstash:v232w
+        imagePullPolicy: Always
+        name: logstash-dequeue
+        ports:
+        - containerPort: 59998
+          hostPort: 59998
+          name: anti-affinity
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /var/log
+          name: var-log
+        - mountPath: /opt/logstash/config/
+          name: logstash-config
+      - env:
+        - name: ENVIRONMENT_BUCKET
+          value: amp-elk-cluster
+        - name: ENVIRONMENT_FOLDER
+          value: environment/sqs-dequeue-version-2
+        - name: ENVIRONMENT_FILE
+          value: startup-environment.env
+        - name: LOGSTASH_CONFIG_BASE
+          value: sqs-dequeue-logstash
+        - name: CROND_CONFIG_BASE
+          value: sqs-dequeue-cron
+        image: registry.paas.ampaws.com.au/elk/crond:v69
+        imagePullPolicy: Always
+        name: config-refresh
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /var/log
+          name: var-log
+        - mountPath: /opt/logstash/config/
+          name: logstash-config
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        node-type: elk-worker
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: var-log
+      - emptyDir: {}
+        name: logstash-config
+status:
+  fullyLabeledReplicas: 12
+  observedGeneration: 3
+  replicas: 12

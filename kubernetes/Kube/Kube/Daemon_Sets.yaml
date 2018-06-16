@@ -1,0 +1,25 @@
+### yaml to deploy a DaemonSet (just use an nginx image) and then test it to be sure it gets deployed on each node.
+## kubectl create -f Daemon_Sets.yaml
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+  name: cthulu
+  labels:
+    daemon: "yup"
+spec:
+  selector:
+    matchLabels:
+      daemon: "pod"
+  template:
+    metadata:
+      labels:
+        daemon: pod
+    spec:
+      toleration:
+      - key: node-role.kubernates.io/master
+        effect: NoSchedule
+      containers:
+      - name: cthulu-jr
+        image: nginx
+        

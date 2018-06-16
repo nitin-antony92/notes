@@ -49,7 +49,7 @@ See the video "Setting Up Your Cluster" in this course for details and a full wa
 On the master, you can watch the node come up by repeatedly running:
 
 kubtctl get nodes
-
+netstat -lnp | grep 1025
 
 kubeadm join 172.31.18.244:6443 --token omvst0.dqprx31y7088xk5b --discovery-token-ca-cert-hash sha256:bf0500ea35a5213b7de9f49b6940c52951224dd2e206f8cc5fea546d307
 70630

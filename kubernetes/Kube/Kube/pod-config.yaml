@@ -1,0 +1,19 @@
+### This yaml is for setting environmental variables
+## kubectl create -f pod-config.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-test-pod
+spec:
+  containers:
+  -  name: test-container
+      image: busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      env: 
+        - name: WHAT_SCHOOL
+          valueFrom: 
+            configMapKeyRef:
+              name: my-map
+              key: school
+  restartPolicy: Always
